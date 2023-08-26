@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -288,10 +289,11 @@ SOCIALACCOUNT_FORMS = {"signup": "prov_int.users.forms.UserSocialSignupForm"}
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ),
+    # "DEFAULT_AUTHENTICATION_CLASSES": (
+    #     "rest_framework.authentication.SessionAuthentication",
+    #     "rest_framework.authentication.TokenAuthentication",
+    # ),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -309,3 +311,16 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+# Authentication JWT
+# ------------------------------------------------------------------------------
+REST_AUTH_SERIALIZERS = {
+    "TOKEN_SERIALIZER": "base.api.v1.serializers.TokenObtainPairSerializer",
+    # "PASSWORD_RESET_SERIALIZER": "ffa_django.users.api.serializers.PasswordResetSerializer",
+    # "USER_DETAILS_SERIALIZER": "base.api.v1.serializers.UserDetailsSerializer",
+    # "PASSWORD_RESET_CONFIRM_SERIALIZER": "ffa_django.users.api.serializers.PasswordResetConfirmSerializer",
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=env.int("ACCESS_TOKEN_LIFETIME", 5)),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=env.int("REFRESH_TOKEN_LIFETIME", 1)),
+}
