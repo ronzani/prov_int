@@ -316,7 +316,7 @@ SPECTACULAR_SETTINGS = {
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "base.api.v1.serializers.TokenObtainPairSerializer",
     # "PASSWORD_RESET_SERIALIZER": "ffa_django.users.api.serializers.PasswordResetSerializer",
-    # "USER_DETAILS_SERIALIZER": "base.api.v1.serializers.UserDetailsSerializer",
+    "USER_DETAILS_SERIALIZER": "base.api.v1.serializers.UserDetailsSerializer",
     # "PASSWORD_RESET_CONFIRM_SERIALIZER": "ffa_django.users.api.serializers.PasswordResetConfirmSerializer",
 }
 
