@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = BASE_DIR / "prov_int"
 env = environ.Env()
 
-# READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-READ_DOT_ENV_FILE = True
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
+# READ_DOT_ENV_FILE = True
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(BASE_DIR / ".env"))
@@ -91,6 +91,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "prov_int.users",
     # Your stuff: custom apps go here
+    "base",
+    "provedor",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
