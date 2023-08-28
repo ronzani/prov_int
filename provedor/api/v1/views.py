@@ -29,5 +29,7 @@ class LeadView(ListModelMixin, CreateModelMixin, RetrieveModelMixin, GenericView
     def list(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         cpf_cnpj_indicador = self.request.query_params.get("indicador", None)
         if cpf_cnpj_indicador is None:
-            return Response({"mensagen": "Query Parameter indicador obrigatorio"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'menssagem": "Query Parameter "indicador" é obrigatório'}, status=status.HTTP_400_BAD_REQUEST
+            )
         return super().list(request, *args, **kwargs)
