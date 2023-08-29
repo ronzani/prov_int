@@ -9,7 +9,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer as Ba
 class UserDetailsSerializer(BaseUserDetailsSerializer):
     class Meta:
         model = get_user_model()
-        fields = ("pk", "username", "email", "name")
+        fields = ("uuid", "username", "email", "name")
         read_only_fields = ("email",)
 
 

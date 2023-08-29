@@ -7,6 +7,7 @@ from base.api.v1.serializers import LoginSerializer
 
 class LoginView(BaseLoginView):
     serializer_class = LoginSerializer
+    lookup_field = "uuid"
 
     def get_response(self):
         serializer_class = self.get_response_serializer()

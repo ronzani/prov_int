@@ -1,8 +1,16 @@
+import uuid
+
 from django.db import models
 from django.utils import timezone
 
 
 class BaseModel(models.Model):
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+        verbose_name="uuid",
+    )
     created_at = models.DateTimeField(null=False, blank=True, default=timezone.now)
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
 

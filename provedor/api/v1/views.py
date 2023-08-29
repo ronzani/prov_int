@@ -15,11 +15,13 @@ class ProvedorView(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = ProvedorSerializer
     permission_classes = [IsAuthenticated]
     queryset = Provedor.objects.all()
+    lookup_field = "uuid"
 
 
 class LeadView(ListModelMixin, CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = LeadSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = "uuid"
     # queryset = Lead.objects.all()
 
     def get_queryset(self):
