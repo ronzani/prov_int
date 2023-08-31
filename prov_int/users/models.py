@@ -23,6 +23,8 @@ class User(AbstractUser):
         unique=True,
         verbose_name="uuid",
     )
+    # cpf_cnpj = CharField(max_length=18)
+    # telefone = CharField(max_length=16)
 
     def get_absolute_url(self) -> str:
         """Get URL for user's detail view.
