@@ -3,7 +3,6 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CharField, UUIDField
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
@@ -14,7 +13,7 @@ class User(AbstractUser):
     """
 
     # First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
+    name = CharField("Nome do Usuário", blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
     uuid = UUIDField(
@@ -23,14 +22,14 @@ class User(AbstractUser):
         unique=True,
         verbose_name="uuid",
     )
-    # cpf_cnpj = CharField(max_length=18)
-    # telefone = CharField(max_length=16)
+    cpf_cnpj = CharField(max_length=18, verbose_name="CPF/CNPJ", null=True, blank=True)
+    telefone = CharField(max_length=16, verbose_name="Telefone", null=True, blank=True)
 
     def get_absolute_url(self) -> str:
-        """Get URL for user's detail view.
+        """
+        Get URL for user's detail view.
 
         Returns:
             str: URL for user detail.
-
         """
         return reverse("users:detail", kwargs={"uuid": self.uuid})
